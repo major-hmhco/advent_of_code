@@ -7,7 +7,6 @@ with open('./input.txt') as f:
 
 #### pt1 
 import collections 
-from functools import cmp_to_key
 
 labels = {k: i for i, k in enumerate(reversed(["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"]))}
 types = {k: i for i, k in enumerate(reversed(["five", "four", "house", "three", "twopair", "pair", "high"]))}
