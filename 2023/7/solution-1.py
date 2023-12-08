@@ -43,20 +43,6 @@ def getHandType(hand):
     else: 
         return 'high' 
 
-def comparator(h1, h2):
-    if h1['handType'] == h2['handType']:
-        for char in range(0, len(h1['hand'])):
-            h1c = h1['hand'][char] 
-            h2c = h2['hand'][char]
-            if h1c != h2c:
-            ## i really hope they haven't got any equal-ranked hands
-            ## as that would lead to there being _options_ for the answer
-            ## depending on how you order them 
-                return labels[h1c] - labels[h2c]
-    else:
-        return h1['handType'] - h2['handType']
-
-
 hands = parseHands(ipt)
 ranked = sorted(hands, key=lambda x: (x['handType'], x['handLabels']))
 returns = sum([x['bid'] * (i+1) for i, x in enumerate(ranked)])
