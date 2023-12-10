@@ -48,9 +48,6 @@ while current != start:
 print(f"Pt1: {len(steps) // 2}")
 
 #### pt2 
-## try a flood-fill
-## seeing as we have all the steps from pt1, we can populate a new grid 
-## use a set so it's a little faster on the lookups  
 steps = set(steps)
 
 def onPath(row, col):
