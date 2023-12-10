@@ -3,10 +3,6 @@
 with open("./input.txt") as f:
     ipt = [x.strip() for x in f.readlines()] 
 
-## to avoid edge boundaries, add "." wrappers around all input
-ipt = ["." + row + "." for row in ipt]
-ipt = ["." * len(ipt[0])] + ipt + ["." * len(ipt[0])]
-
 
 #### pt1 
 
@@ -51,5 +47,38 @@ while current != start:
             break 
 print(f"Pt1: {len(steps) // 2}")
 
+#### pt2 
+## try a flood-fill
+## seeing as we have all the steps from pt1, we can populate a new grid 
+## use a set so it's a little faster on the lookups  
+steps = set(steps)
 
+def onPath(row, col):
+    return (row, col) in steps 
+
+## make visualisation easier
+def printGrid(grid):
+    for line in grid:
+        print(*line, sep="")
+
+grid = [["." if onPath(row, col) else "G" for col, _ in enumerate(ipt[row])] for row, _ in enumerate(ipt)]
+
+#### let's try counting how many times we transition from outside to inside 
+count = 0
+for row in range(len(ipt)):
+    inside = False 
+    for col in range(len(ipt[row])):
+        ## if the point is on the loop
+        if onPath(row, col): 
+            ## and the point forms a vertical 
+            if ipt[row][col] in "|JLS":
+                ## flip from inside to outside or vice-versa
+                inside = not inside 
+        ## if the point is not on the grid, add 1 if inside, or 0 if outside
+        else: 
+            count += inside 
+            grid[row][col] = "I" if inside else "O"
+        
+printGrid(grid)
+print(f"Pt2: {count}")
 
