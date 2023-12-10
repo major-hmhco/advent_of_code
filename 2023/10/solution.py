@@ -25,8 +25,8 @@ for row, chars in enumerate(ipt):
     if len(start):
         col = start[0]
         break
-steps = [start]
 start = (row, col)
+steps = [start]
 
 ## get my first step 
 if ipt[row][col+1] in "J-7":
