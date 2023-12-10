@@ -9,7 +9,6 @@ ipt = ["." * len(ipt[0])] + ipt + ["." * len(ipt[0])]
 
 
 #### pt1 
-steps = [start]
 
 directions = {
     "-": [(0, 1), (0, -1)],
@@ -26,6 +25,7 @@ for row, chars in enumerate(ipt):
     if len(start):
         col = start[0]
         break
+steps = [start]
 start = (row, col)
 
 ## get my first step 
